@@ -49,13 +49,71 @@ def audit_source_file(file_alias, file_path):
         "country": 0,
     }
     
-    # Text length reservoirs / stats
-    # For memory efficiency, sample lengths or collect summary arrays
-    # 500k rows can hold int lengths in array easily (e.g. 5M ints = 20MB)
-    name_lengths = []
-    name_word_counts = []
-    addr_lengths = []
-    addr_word_counts = []
+    # ---------------------------------------------------------------------------
+    # Memory-bounded statistics: Welford online mean/variance + fixed reservoir
+    # for percentile estimation.  Replaces unbounded Python lists that grew to
+    # ~1.5 GB on the 5M-row source files.
+    # Reservoir size: 65536 samples => percentile error < 0.3% on 5M rows.
+    # ---------------------------------------------------------------------------
+    import random as _random
+    RESERVOIR = 65536
+
+    class _StreamStats:
+        """Welford online mean/variance + reservoir sampling for percentiles."""
+        __slots__ = ('n', 'mean', 'M2', 'min', 'max', 'reservoir', '_rng')
+        def __init__(self):
+            self.n = 0
+            self.mean = 0.0
+            self.M2 = 0.0
+            self.min = float('inf')
+            self.max = float('-inf')
+            self.reservoir = []
+            self._rng = _random.Random(42)
+        def update(self, x):
+            self.n += 1
+            delta = x - self.mean
+            self.mean += delta / self.n
+            delta2 = x - self.mean
+            self.M2 += delta * delta2
+            if x < self.min:
+                self.min = x
+            if x > self.max:
+                self.max = x
+            # Reservoir sampling (Algorithm R)
+            if len(self.reservoir) < RESERVOIR:
+                self.reservoir.append(x)
+            else:
+                j = self._rng.randint(0, self.n - 1)
+                if j < RESERVOIR:
+                    self.reservoir[j] = x
+        def stats(self):
+            if self.n == 0:
+                return {}
+            import math
+            variance = self.M2 / self.n if self.n > 1 else 0.0
+            std = math.sqrt(variance)
+            s = sorted(self.reservoir)
+            def _pct(p):
+                idx = (len(s) - 1) * p / 100.0
+                lo = int(idx)
+                hi = min(lo + 1, len(s) - 1)
+                return s[lo] + (s[hi] - s[lo]) * (idx - lo)
+            return {
+                'min': int(self.min),
+                'max': int(self.max),
+                'mean': self.mean,
+                'std': std,
+                'median': _pct(50),
+                'p25': _pct(25),
+                'p75': _pct(75),
+                'p95': _pct(95),
+                'p99': _pct(99),
+            }
+
+    name_len_stats   = _StreamStats()
+    name_words_stats = _StreamStats()
+    addr_len_stats   = _StreamStats()
+    addr_words_stats = _StreamStats()
     
     # Non-ascii detection
     non_ascii_name_count = 0
@@ -101,38 +159,17 @@ def audit_source_file(file_alias, file_path):
             elif ctry.strip().lower() in LITERAL_NULLS:
                 literal_null_counts["country"] += 1
                 
-            # Lengths (reservoir sampling or stride if huge, or append directly)
-            # Up to a few million rows, append length as int:
-            # 5M ints in Python list is ~40MB, totally safe.
             n_len = len(bname)
             a_len = len(baddr)
-            name_lengths.append(n_len)
-            addr_lengths.append(a_len)
-            
-            # Simple word counts
-            name_word_counts.append(len(bname.split()))
-            addr_word_counts.append(len(baddr.split()))
+            name_len_stats.update(n_len)
+            addr_len_stats.update(a_len)
+            name_words_stats.update(len(bname.split()))
+            addr_words_stats.update(len(baddr.split()))
             
             if not bname.isascii():
                 non_ascii_name_count += 1
             if not baddr.isascii():
                 non_ascii_addr_count += 1
-
-    def compute_stats(arr):
-        if not arr:
-            return {}
-        a = np.array(arr, dtype=np.int32)
-        return {
-            "min": int(np.min(a)),
-            "max": int(np.max(a)),
-            "mean": float(np.mean(a)),
-            "std": float(np.std(a)),
-            "median": float(np.median(a)),
-            "p25": float(np.percentile(a, 25)),
-            "p75": float(np.percentile(a, 75)),
-            "p95": float(np.percentile(a, 95)),
-            "p99": float(np.percentile(a, 99)),
-        }
 
     results = {
         "file": file_path,
@@ -149,10 +186,10 @@ def audit_source_file(file_alias, file_path):
         "non_ascii_name_pct": (non_ascii_name_count / total_rows * 100) if total_rows else 0,
         "non_ascii_addrs": non_ascii_addr_count,
         "non_ascii_addr_pct": (non_ascii_addr_count / total_rows * 100) if total_rows else 0,
-        "name_char_length_stats": compute_stats(name_lengths),
-        "name_word_count_stats": compute_stats(name_word_counts),
-        "addr_char_length_stats": compute_stats(addr_lengths),
-        "addr_word_count_stats": compute_stats(addr_word_counts),
+        "name_char_length_stats": name_len_stats.stats(),
+        "name_word_count_stats": name_words_stats.stats(),
+        "addr_char_length_stats": addr_len_stats.stats(),
+        "addr_word_count_stats": addr_words_stats.stats(),
     }
     
     print(f"  Rows: {total_rows:,} | Unique IDs: {len(seen_ids):,} | Dup IDs: {duplicate_ids}")

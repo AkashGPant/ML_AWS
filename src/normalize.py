@@ -373,7 +373,19 @@ ROAD_ABBREVIATIONS = {
     r"\bp\.?o\.?\s*box\b": "pobox",
 }
 
-# State abbreviations map (US + India) for standardizing state tokens
+# NOTE (STATE_MAPPING — intentionally NOT applied inside normalize_address):
+# A naive token-substitution of two-letter state abbreviations inside a full
+# address string would produce false positives: "in" matches INDIANA inside
+# words like "Main" or "Building", "or" matches OREGON inside "floor", etc.
+# The COMPILED_ROAD_ABBR patterns already use \b word-boundary anchors which
+# mitigates the worst cases for road/unit abbreviations, but the same trick
+# cannot be applied safely to arbitrary two-letter state codes without a full
+# address parser.
+#
+# Decision: STATE_MAPPING is preserved here as a reference lookup table for
+# Phase 1 feature engineering (e.g. canonicalising the last token of a
+# pre-split address field).  It is NOT used in normalize_address() so that
+# existing audit-verified normalisation outputs remain unchanged.
 STATE_MAPPING = {
     # US States
     "al": "alabama", "ak": "alaska", "az": "arizona", "ar": "arkansas", "ca": "california",
@@ -531,8 +543,9 @@ def get_derived_record(
     norm_name_clean = normalize_name_clean(raw_name)
     norm_addr = normalize_address(raw_addr)
 
-    name_tokens = tokenize_string(norm_name_clean)
-    addr_tokens = tokenize_string(norm_addr)
+    # name_tokens / addr_tokens were previously computed here but never included
+    # in the returned dict or the Parquet schema.  Removed to eliminate ~2×
+    # tokenize_string() overhead across every row in the hot loop.
 
     postal_code = extract_postal_code(raw_addr)
 

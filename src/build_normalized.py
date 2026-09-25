@@ -83,6 +83,10 @@ def process_raw_chunk(rows: List[Tuple[str, str, str, str]]) -> Dict[str, list]:
     }
 
 
+# Codecs that do NOT accept a compression_level argument.
+_LEVELLESS_CODECS: set = {"snappy", "lz4", "lz4_raw", "none", "uncompressed"}
+
+
 def normalize_source_file(
     input_path: str,
     output_path: str,
@@ -95,6 +99,10 @@ def normalize_source_file(
     """
     Normalizes a TSV source file to Parquet in streaming batches.
     Memory usage is O(batch_size) — never loads the entire file into RAM.
+
+    Note: compression_level is ignored for codecs that do not support it
+    (snappy, lz4, lz4_raw, none/uncompressed).  For those codecs the writer
+    is opened without a level so PyArrow does not raise ArrowInvalid.
     """
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
     start_time = time.perf_counter()
@@ -102,13 +110,20 @@ def normalize_source_file(
     initial_mem_mb = proc.memory_info().rss / (1024 * 1024)
     peak_mem_mb = initial_mem_mb
 
+    # Only pass compression_level for codecs that accept it.
+    _supports_level = compression.lower() not in _LEVELLESS_CODECS
+    _level_str = f" (level {compression_level})" if _supports_level else ""
     print(f"\n>>> Starting normalization: {input_path} -> {output_path}")
-    print(f"    Batch size: {batch_size:,} | Workers: {max_workers} | Compression: {compression} (level {compression_level})")
+    print(f"    Batch size: {batch_size:,} | Workers: {max_workers} | Compression: {compression}{_level_str}")
 
     total_rows = 0
-    writer = pq.ParquetWriter(output_path, PARQUET_SCHEMA, compression=compression, compression_level=compression_level)
+    _writer_kwargs: Dict[str, Any] = {"compression": compression}
+    if _supports_level:
+        _writer_kwargs["compression_level"] = compression_level
+    writer = pq.ParquetWriter(output_path, PARQUET_SCHEMA, **_writer_kwargs)
 
-    # Use multiprocessing executor if workers > 1, else single thread
+    # Use multiprocessing executor if workers > 1, else single thread.
+    # Declared before the try block so the finally clause can always shut it down.
     executor = ProcessPoolExecutor(max_workers=max_workers) if max_workers > 1 else None
 
     try:
@@ -182,7 +197,7 @@ def normalize_source_file(
     finally:
         writer.close()
         if executor is not None:
-            executor.shutdown()
+            executor.shutdown(wait=True)
 
     elapsed = time.perf_counter() - start_time
     out_size_bytes = os.path.getsize(output_path)
