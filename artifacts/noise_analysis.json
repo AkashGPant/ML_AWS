@@ -1,0 +1,25 @@
+{
+  "sampled_pairs": 100000,
+  "exact_name_match_pct": 4.612,
+  "lower_name_match_pct": 10.84,
+  "exact_addr_match_pct": 2.156,
+  "lower_addr_match_pct": 7.087000000000001,
+  "missing_target_addr_pct": 4.437,
+  "target_scripts": {
+    "Latin": 93054,
+    "Devanagari": 3915,
+    "Malayalam": 283,
+    "Telugu": 590,
+    "Kannada": 572,
+    "Tamil": 492,
+    "Gujarati": 445,
+    "Bengali": 432,
+    "Gurmukhi": 111,
+    "ORIYA": 99,
+    "PUNCT_DIGIT": 7
+  },
+  "dba_in_target_pct": 1.421,
+  "domain_in_target_pct": 5.197,
+  "weak_name_strong_addr_pct": 8.819,
+  "strong_name_weak_addr_pct": 0.752
+}

@@ -1,0 +1,15 @@
+{
+  "include": [
+    "src",
+    "scripts",
+    "tests",
+    "utils"
+  ],
+  "pythonPlatform": "Windows",
+  "pythonVersion": "3.14",
+  "pythonPath": "C:\\Users\\AKASH\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+  "extraPaths": [
+    ".",
+    "src"
+  ]
+}

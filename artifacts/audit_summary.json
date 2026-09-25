@@ -1,0 +1,508 @@
+{
+  "train_source1": {
+    "file": "dataset\\train\\train_source1.tsv",
+    "size_bytes": 210069713,
+    "total_rows": 2206821,
+    "unique_entity_ids": 2206821,
+    "duplicate_ids": 0,
+    "malformed_rows": 0,
+    "header": [
+      "entity_id",
+      "business_name",
+      "business_address",
+      "country"
+    ],
+    "countries": {
+      "US": 1323633,
+      "India": 883188
+    },
+    "null_counts": {
+      "entity_id": 0,
+      "business_name": 0,
+      "business_address": 0,
+      "country": 0
+    },
+    "literal_null_counts": {
+      "business_name": 0,
+      "business_address": 0,
+      "country": 0
+    },
+    "non_ascii_names": 0,
+    "non_ascii_name_pct": 0.0,
+    "non_ascii_addrs": 554,
+    "non_ascii_addr_pct": 0.0251039844192166,
+    "name_char_length_stats": {
+      "min": 3,
+      "max": 105,
+      "mean": 24.03440333402664,
+      "std": 7.7405308789493885,
+      "median": 24.0,
+      "p25": 18.0,
+      "p75": 30.0,
+      "p95": 37.0,
+      "p99": 42.0
+    },
+    "name_word_count_stats": {
+      "min": 1,
+      "max": 16,
+      "mean": 3.5476130596908404,
+      "std": 0.9779322123263144,
+      "median": 4.0,
+      "p25": 3.0,
+      "p75": 4.0,
+      "p95": 5.0,
+      "p99": 6.0
+    },
+    "addr_char_length_stats": {
+      "min": 11,
+      "max": 256,
+      "mean": 52.06621923572415,
+      "std": 25.32974161029869,
+      "median": 41.0,
+      "p25": 33.0,
+      "p75": 70.0,
+      "p95": 103.0,
+      "p99": 124.0
+    },
+    "addr_word_count_stats": {
+      "min": 2,
+      "max": 43,
+      "mean": 8.031722554751836,
+      "std": 3.511407540713509,
+      "median": 7.0,
+      "p25": 5.0,
+      "p75": 10.0,
+      "p95": 15.0,
+      "p99": 19.0
+    }
+  },
+  "train_source2": {
+    "file": "dataset\\train\\train_source2.tsv",
+    "size_bytes": 489301488,
+    "total_rows": 5034616,
+    "unique_entity_ids": 5034616,
+    "duplicate_ids": 0,
+    "malformed_rows": 0,
+    "header": [
+      "entity_id",
+      "business_name",
+      "business_address",
+      "country"
+    ],
+    "countries": {
+      "India": 2017799,
+      "US": 3016817
+    },
+    "null_counts": {
+      "entity_id": 0,
+      "business_name": 0,
+      "business_address": 168967,
+      "country": 0
+    },
+    "literal_null_counts": {
+      "business_name": 6,
+      "business_address": 0,
+      "country": 0
+    },
+    "non_ascii_names": 764608,
+    "non_ascii_name_pct": 15.187017242228604,
+    "non_ascii_addrs": 478453,
+    "non_ascii_addr_pct": 9.50326698203001,
+    "name_char_length_stats": {
+      "min": 2,
+      "max": 104,
+      "mean": 25.103574930044317,
+      "std": 8.894691432912637,
+      "median": 25.0,
+      "p25": 19.0,
+      "p75": 31.0,
+      "p95": 40.0,
+      "p99": 48.0
+    },
+    "name_word_count_stats": {
+      "min": 1,
+      "max": 15,
+      "mean": 3.496623575660984,
+      "std": 1.2403216859338888,
+      "median": 4.0,
+      "p25": 3.0,
+      "p75": 4.0,
+      "p95": 5.0,
+      "p99": 6.0
+    },
+    "addr_char_length_stats": {
+      "min": 0,
+      "max": 249,
+      "mean": 46.225912760774605,
+      "std": 24.84468376427807,
+      "median": 37.0,
+      "p25": 30.0,
+      "p75": 61.0,
+      "p95": 96.0,
+      "p99": 118.0
+    },
+    "addr_word_count_stats": {
+      "min": 0,
+      "max": 46,
+      "mean": 7.285135549563264,
+      "std": 3.5773346528266097,
+      "median": 6.0,
+      "p25": 5.0,
+      "p75": 9.0,
+      "p95": 15.0,
+      "p99": 18.0
+    }
+  },
+  "train_source3": {
+    "file": "dataset\\train\\train_source3.tsv",
+    "size_bytes": 503705637,
+    "total_rows": 5285603,
+    "unique_entity_ids": 5285603,
+    "duplicate_ids": 0,
+    "malformed_rows": 0,
+    "header": [
+      "entity_id",
+      "business_name",
+      "business_address",
+      "country"
+    ],
+    "countries": {
+      "US": 3170056,
+      "India": 2115547
+    },
+    "null_counts": {
+      "entity_id": 0,
+      "business_name": 0,
+      "business_address": 175916,
+      "country": 0
+    },
+    "literal_null_counts": {
+      "business_name": 18,
+      "business_address": 0,
+      "country": 0
+    },
+    "non_ascii_names": 606737,
+    "non_ascii_name_pct": 11.479049788642847,
+    "non_ascii_addrs": 476588,
+    "non_ascii_addr_pct": 9.01671956823091,
+    "name_char_length_stats": {
+      "min": 2,
+      "max": 123,
+      "mean": 25.202143823514554,
+      "std": 9.493621832678668,
+      "median": 25.0,
+      "p25": 18.0,
+      "p75": 31.0,
+      "p95": 42.0,
+      "p99": 50.0
+    },
+    "name_word_count_stats": {
+      "min": 1,
+      "max": 18,
+      "mean": 3.525458117077654,
+      "std": 1.34474066785672,
+      "median": 4.0,
+      "p25": 3.0,
+      "p75": 4.0,
+      "p95": 6.0,
+      "p99": 7.0
+    },
+    "addr_char_length_stats": {
+      "min": 0,
+      "max": 240,
+      "mean": 46.71443731207206,
+      "std": 21.649811124060786,
+      "median": 42.0,
+      "p25": 35.0,
+      "p75": 54.0,
+      "p95": 91.0,
+      "p99": 115.0
+    },
+    "addr_word_count_stats": {
+      "min": 0,
+      "max": 43,
+      "mean": 7.171957674460227,
+      "std": 3.3931509022579838,
+      "median": 6.0,
+      "p25": 5.0,
+      "p75": 8.0,
+      "p95": 14.0,
+      "p99": 18.0
+    }
+  },
+  "train_ground_truth": {
+    "file": "dataset\\train\\train_ground_truth.tsv",
+    "size_bytes": 127015583,
+    "total_rows": 2206821,
+    "unique_s1_ids": 2206821,
+    "duplicate_s1": 0,
+    "missing_s1_count": 0,
+    "extra_s1_count": 0,
+    "intra_list_duplicates": 0,
+    "self_matches": 0,
+    "invalid_id_count": 0,
+    "total_matches_across_all_s1": 7638365,
+    "total_s2_matches": 3693619,
+    "total_s3_matches": 3944746,
+    "unique_matched_s2": 3693619,
+    "unique_matched_s3": 3944746,
+    "unmatched_s2_count": 1340997,
+    "unmatched_s3_count": 1340857,
+    "s2_coverage_pct": 73.36446314872872,
+    "s3_coverage_pct": 74.63190103380826,
+    "s2_multi_mapped_count": 0,
+    "s3_multi_mapped_count": 0,
+    "match_count_distribution": {
+      "0_singletons": 123247,
+      "0_pct": 5.584820880352326,
+      "1_match": 119157,
+      "1_pct": 5.399486410542586,
+      "2_matches": 375212,
+      "2_pct": 17.002375815709566,
+      "3_or_more": 1589205,
+      "3_or_more_pct": 72.01331689339551,
+      "min": 0,
+      "max": 11,
+      "mean": 3.4612526344456573,
+      "std": 1.7053223774520017,
+      "median": 3.0,
+      "p90": 6.0,
+      "p95": 6.0,
+      "p99": 8.0
+    }
+  },
+  "test_source1": {
+    "file": "dataset\\test\\test_source1.tsv",
+    "size_bytes": 175022086,
+    "total_rows": 1732544,
+    "unique_entity_ids": 1732544,
+    "duplicate_ids": 0,
+    "malformed_rows": 0,
+    "header": [
+      "entity_id",
+      "business_name",
+      "business_address",
+      "country"
+    ],
+    "countries": {
+      "US": 663106,
+      "France": 259452,
+      "India": 809986
+    },
+    "null_counts": {
+      "entity_id": 0,
+      "business_name": 0,
+      "business_address": 0,
+      "country": 0
+    },
+    "literal_null_counts": {
+      "business_name": 0,
+      "business_address": 0,
+      "country": 0
+    },
+    "non_ascii_names": 40789,
+    "non_ascii_name_pct": 2.3542836430128182,
+    "non_ascii_addrs": 73800,
+    "non_ascii_addr_pct": 4.259632078608105,
+    "name_char_length_stats": {
+      "min": 3,
+      "max": 92,
+      "mean": 23.836660425362936,
+      "std": 7.668583819317621,
+      "median": 24.0,
+      "p25": 18.0,
+      "p75": 29.0,
+      "p95": 36.0,
+      "p99": 42.0
+    },
+    "name_word_count_stats": {
+      "min": 1,
+      "max": 14,
+      "mean": 3.5221824092201985,
+      "std": 0.9174405866308374,
+      "median": 4.0,
+      "p25": 3.0,
+      "p75": 4.0,
+      "p95": 5.0,
+      "p99": 6.0
+    },
+    "addr_char_length_stats": {
+      "min": 11,
+      "max": 268,
+      "mean": 57.21318361900188,
+      "std": 25.025887614211097,
+      "median": 50.0,
+      "p25": 36.0,
+      "p75": 74.0,
+      "p95": 105.0,
+      "p99": 126.0
+    },
+    "addr_word_count_stats": {
+      "min": 2,
+      "max": 43,
+      "mean": 8.588210169554136,
+      "std": 3.5836708338034327,
+      "median": 8.0,
+      "p25": 6.0,
+      "p75": 11.0,
+      "p95": 16.0,
+      "p99": 19.0
+    }
+  },
+  "test_source2": {
+    "file": "dataset\\test\\test_source2.tsv",
+    "size_bytes": 509456422,
+    "total_rows": 4887273,
+    "unique_entity_ids": 4887273,
+    "duplicate_ids": 0,
+    "malformed_rows": 0,
+    "header": [
+      "entity_id",
+      "business_name",
+      "business_address",
+      "country"
+    ],
+    "countries": {
+      "India": 2312565,
+      "France": 703378,
+      "US": 1871330
+    },
+    "null_counts": {
+      "entity_id": 0,
+      "business_name": 0,
+      "business_address": 129408,
+      "country": 0
+    },
+    "literal_null_counts": {
+      "business_name": 49,
+      "business_address": 0,
+      "country": 0
+    },
+    "non_ascii_names": 928158,
+    "non_ascii_name_pct": 18.991327065216122,
+    "non_ascii_addrs": 720665,
+    "non_ascii_addr_pct": 14.745748805110745,
+    "name_char_length_stats": {
+      "min": 2,
+      "max": 102,
+      "mean": 25.70386348378738,
+      "std": 9.124866610684556,
+      "median": 25.0,
+      "p25": 19.0,
+      "p75": 32.0,
+      "p95": 42.0,
+      "p99": 49.0
+    },
+    "name_word_count_stats": {
+      "min": 1,
+      "max": 15,
+      "mean": 3.586043996314509,
+      "std": 1.1995217806841711,
+      "median": 4.0,
+      "p25": 3.0,
+      "p75": 4.0,
+      "p95": 5.0,
+      "p99": 6.0
+    },
+    "addr_char_length_stats": {
+      "min": 0,
+      "max": 269,
+      "mean": 50.413407845233934,
+      "std": 25.347084774144733,
+      "median": 43.0,
+      "p25": 32.0,
+      "p75": 67.0,
+      "p95": 99.0,
+      "p99": 120.0
+    },
+    "addr_word_count_stats": {
+      "min": 0,
+      "max": 43,
+      "mean": 7.798124639241556,
+      "std": 3.693701469438264,
+      "median": 7.0,
+      "p25": 5.0,
+      "p75": 10.0,
+      "p95": 15.0,
+      "p99": 19.0
+    }
+  },
+  "test_source3": {
+    "file": "dataset\\test\\test_source3.tsv",
+    "size_bytes": 506002772,
+    "total_rows": 5082316,
+    "unique_entity_ids": 5082316,
+    "duplicate_ids": 0,
+    "malformed_rows": 0,
+    "header": [
+      "entity_id",
+      "business_name",
+      "business_address",
+      "country"
+    ],
+    "countries": {
+      "India": 2405000,
+      "France": 731615,
+      "US": 1945701
+    },
+    "null_counts": {
+      "entity_id": 0,
+      "business_name": 0,
+      "business_address": 136098,
+      "country": 0
+    },
+    "literal_null_counts": {
+      "business_name": 61,
+      "business_address": 0,
+      "country": 0
+    },
+    "non_ascii_names": 737515,
+    "non_ascii_name_pct": 14.51139598560971,
+    "non_ascii_addrs": 729222,
+    "non_ascii_addr_pct": 14.348222345875383,
+    "name_char_length_stats": {
+      "min": 2,
+      "max": 103,
+      "mean": 25.65539018038233,
+      "std": 9.565660229183694,
+      "median": 25.0,
+      "p25": 19.0,
+      "p75": 32.0,
+      "p95": 42.0,
+      "p99": 50.0
+    },
+    "name_word_count_stats": {
+      "min": 1,
+      "max": 16,
+      "mean": 3.5962077131764336,
+      "std": 1.2868786660421214,
+      "median": 4.0,
+      "p25": 3.0,
+      "p75": 4.0,
+      "p95": 6.0,
+      "p99": 7.0
+    },
+    "addr_char_length_stats": {
+      "min": 0,
+      "max": 267,
+      "mean": 48.74047501178597,
+      "std": 22.64386588912912,
+      "median": 43.0,
+      "p25": 35.0,
+      "p75": 59.0,
+      "p95": 94.0,
+      "p99": 117.0
+    },
+    "addr_word_count_stats": {
+      "min": 0,
+      "max": 43,
+      "mean": 7.512219822616303,
+      "std": 3.540039766065668,
+      "median": 7.0,
+      "p25": 5.0,
+      "p75": 9.0,
+      "p95": 15.0,
+      "p99": 19.0
+    }
+  }
+}

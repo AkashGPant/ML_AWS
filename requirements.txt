@@ -1,0 +1,10 @@
+# Core dependencies for AWS ML Hackathon 2026 - Business Entity Resolution Challenge
+pandas>=3.0.0
+numpy>=2.0.0
+pyarrow>=25.0.0
+polars>=1.44.0
+duckdb>=1.5.0
+rapidfuzz>=3.14.0
+pytest>=9.0.0
+psutil>=7.0.0
+tqdm>=4.67.0

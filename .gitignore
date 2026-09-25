@@ -1,0 +1,27 @@
+# Datasets
+dataset/
+data/
+*.csv
+*.tsv
+*.parquet
+
+# Large ML artifacts
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.onnx
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment/secrets
+.env
+
+# IDE
+.vscode/
+.idea/
+.DS_Store.DS_Store

@@ -1,0 +1,79 @@
+[
+  {
+    "dataset": "train_source1.tsv",
+    "input_path": "dataset/train/train_source1.tsv",
+    "output_path": "dataset/normalized/train_source1.parquet",
+    "total_rows": 2206821,
+    "input_size_mb": 200.33808994293213,
+    "output_size_mb": 156.5056505203247,
+    "compression_ratio": 1.280069373066598,
+    "elapsed_seconds": 75.66737679997459,
+    "rows_per_second": 29164.761530371183,
+    "peak_ram_mb": 328.1796875
+  },
+  {
+    "dataset": "train_source2.tsv",
+    "input_path": "dataset/train/train_source2.tsv",
+    "output_path": "dataset/normalized/train_source2.parquet",
+    "total_rows": 5034616,
+    "input_size_mb": 466.63426208496094,
+    "output_size_mb": 376.69478130340576,
+    "compression_ratio": 1.2387595614421696,
+    "elapsed_seconds": 178.601208600041,
+    "rows_per_second": 28189.148547558285,
+    "peak_ram_mb": 342.22265625
+  },
+  {
+    "dataset": "train_source3.tsv",
+    "input_path": "dataset/train/train_source3.tsv",
+    "output_path": "dataset/normalized/train_source3.parquet",
+    "total_rows": 5285603,
+    "input_size_mb": 480.3711290359497,
+    "output_size_mb": 390.67204666137695,
+    "compression_ratio": 1.229601997739862,
+    "elapsed_seconds": 184.9318734999979,
+    "rows_per_second": 28581.352148579517,
+    "peak_ram_mb": 335.94140625
+  },
+  {
+    "dataset": "test_source1.tsv",
+    "input_path": "dataset/test/test_source1.tsv",
+    "output_path": "dataset/normalized/test_source1.parquet",
+    "total_rows": 1732544,
+    "input_size_mb": 166.9140682220459,
+    "output_size_mb": 124.6817569732666,
+    "compression_ratio": 1.3387208543895837,
+    "elapsed_seconds": 64.16648080002051,
+    "rows_per_second": 27000.76392532106,
+    "peak_ram_mb": 335.125
+  },
+  {
+    "dataset": "test_source2.tsv",
+    "input_path": "dataset/test/test_source2.tsv",
+    "output_path": "dataset/normalized/test_source2.parquet",
+    "total_rows": 4887273,
+    "input_size_mb": 485.855504989624,
+    "output_size_mb": 374.44000720977783,
+    "compression_ratio": 1.29755233317637,
+    "elapsed_seconds": 188.6693875999772,
+    "rows_per_second": 25903.900267923436,
+    "peak_ram_mb": 348.05078125
+  },
+  {
+    "dataset": "test_source3.tsv",
+    "input_path": "dataset/test/test_source3.tsv",
+    "output_path": "dataset/normalized/test_source3.parquet",
+    "total_rows": 5082316,
+    "input_size_mb": 482.5618476867676,
+    "output_size_mb": 380.95567989349365,
+    "compression_ratio": 1.266713880789704,
+    "elapsed_seconds": 185.9588381999638,
+    "rows_per_second": 27330.32777143361,
+    "peak_ram_mb": 344.4921875
+  },
+  {
+    "total_s1": 2206821,
+    "total_pairs": 7638365,
+    "elapsed_seconds": 10.51388440001756
+  }
+]
